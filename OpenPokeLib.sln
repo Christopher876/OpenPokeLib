@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPokeLib", "OpenPokeLib\OpenPokeLib.csproj", "{66745F48-14F5-4A95-8CBE-7E40A722F563}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{EE099632-E86B-4341-B86E-74230B5398B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{66745F48-14F5-4A95-8CBE-7E40A722F563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66745F48-14F5-4A95-8CBE-7E40A722F563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66745F48-14F5-4A95-8CBE-7E40A722F563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE099632-E86B-4341-B86E-74230B5398B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE099632-E86B-4341-B86E-74230B5398B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE099632-E86B-4341-B86E-74230B5398B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE099632-E86B-4341-B86E-74230B5398B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
