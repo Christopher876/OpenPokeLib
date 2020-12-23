@@ -1,15 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MersenneTwister" Version="1.0.6" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Formulas" />
+      <ProjectReference Include="..\OpenPokeLib\OpenPokeLib.csproj" />
     </ItemGroup>
 
 </Project>

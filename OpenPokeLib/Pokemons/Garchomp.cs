@@ -1,5 +1,5 @@
 using System;
-using OpenPokeLib.Formulas;
+using OpenPokeLib.Experience;
 
 namespace OpenPokeLib.Pokemons
 {
@@ -9,11 +9,15 @@ namespace OpenPokeLib.Pokemons
         {
             Name = "Garchomp";
             NickName = "Garchomp";
-            Level = 78;
-            
             Stats.SetBaseStats(108,130,95,80,85,102);
-            int o = Experience.OtherStat(130,12,190,78,Natures.Adamant);
-            Console.WriteLine(o);
+        }
+
+        public Garchomp(Nature nature, int[] ivs, int[] evs) : base(nature, ivs, evs)
+        {
+            Name = "Garchomp";
+            NickName = "Garchomp";
+            Stats.SetBaseStats(108,130,95,80,85,102);
+            Stats.Experience = new Slow();
         }
     }
 }

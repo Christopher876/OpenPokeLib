@@ -8,7 +8,7 @@ namespace OpenPokeLib.Pokemons
         {
             Name = "Charmander";
             NickName = "Charmander";
-            Level = 5;
+            Stats.Level = 5;
             
             Stats.SetBaseStats(39,52,43,60,50,65);
         }

@@ -2,5 +2,18 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=427793ef_002D8fed_002D48b2_002D8bc9_002De9bdc8e7579f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::EE099632-E86B-4341-B86E-74230B5398B6::net5.0::Tests.PokemonCreation.CreateGarchomp&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::EE099632-E86B-4341-B86E-74230B5398B6::net5.0::Tests.PokemonCreation.Experience&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::EE099632-E86B-4341-B86E-74230B5398B6::net5.0::Tests.PokemonCreation.GetExperienceNeededToLevelUpFast&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::EE099632-E86B-4341-B86E-74230B5398B6::net5.0::Tests.PokemonCreation.GetExperienceNeededToLevelUpSlow&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=42e30f82_002D4892_002D44fe_002D804e_002D87181a13169a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreateGarchomp" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::EE099632-E86B-4341-B86E-74230B5398B6::net5.0::Tests.PokemonCreation.CreateGarchomp&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7165e210_002D33e9_002D4b2c_002Db3d8_002Db06fcef55046/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreateGarchomp #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::EE099632-E86B-4341-B86E-74230B5398B6::net5.0::Tests.PokemonCreation.CreateGarchomp&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

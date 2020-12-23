@@ -8,7 +8,6 @@ namespace OpenPokeLib
     {
         public string Name { get; set; }
         public string NickName { get; set; }
-        public int Level { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
         public int Exp { get; set; }
@@ -19,9 +18,20 @@ namespace OpenPokeLib
         public int turns = 0;
         public int PoisonTurns = 0;
 
-        public Pokemon()
+        public Pokemon(Nature nature = null, int[] ivs = null, int[] evs = null)
         {
-            Stats = new PokemonStats();
+            if (ivs != null && evs != null)
+            {
+                Stats = new PokemonStats(nature, ivs, evs);
+            }
+            else if (ivs != null)
+            {
+                Stats = new PokemonStats(ivs);
+            }
+            else
+            {
+                Stats = new PokemonStats();
+            }
         }
 
         public virtual void Update()
