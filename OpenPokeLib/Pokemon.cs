@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
+using OpenPokeLib.Abilities;
 using OpenPokeLib.Moves;
+using OpenPokeLib.PokemonTypes;
 
 namespace OpenPokeLib
 {
@@ -8,6 +10,7 @@ namespace OpenPokeLib
     {
         public string Name { get; set; }
         public string NickName { get; set; }
+        public bool Shiny { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
         public int Exp { get; set; }
@@ -15,22 +18,27 @@ namespace OpenPokeLib
         public Move[] Moves;
         public Effects Effect;
 
+        public Gender Gender;
+        public IPokemonType[] Types;
+        public Ability Ability;
+
         public int turns = 0;
         public int PoisonTurns = 0;
 
-        public Pokemon(Nature nature = null, int[] ivs = null, int[] evs = null)
+        public Pokemon(string name, Nature nature = null, int[] ivs = null, int[] evs = null)
         {
+            Name = name;
             if (ivs != null && evs != null)
             {
-                Stats = new PokemonStats(nature, ivs, evs);
+                Stats = new PokemonStats(name,nature, ivs, evs);
             }
             else if (ivs != null)
             {
-                Stats = new PokemonStats(ivs);
+                Stats = new PokemonStats(name,ivs);
             }
             else
             {
-                Stats = new PokemonStats();
+                Stats = new PokemonStats(name);
             }
         }
 
@@ -38,6 +46,17 @@ namespace OpenPokeLib
         {
             turns++; //Track the number of turns this Pokemon has done
             CheckStatus();
+        }
+
+        public void Generate(bool shiny, int[] ivs, Nature nature, Gender gender, Ability ability, IPokemonType[] types)
+        {
+            Gender = gender;
+            Stats.IVs = ivs.Clone() as int[];
+            Stats.Nature = nature;
+            Stats.EVs = new int[6];
+            Shiny = shiny;
+            Ability = ability;
+            Types = types;
         }
 
         private void CheckStatus()
