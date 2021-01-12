@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenPokeLib;
+using OpenPokeLib.Items;
 using OpenPokeLib.Pokemons;
 
 namespace TestRun
@@ -8,10 +9,26 @@ namespace TestRun
     {
         static void Main(string[] args)
         {
-            Garchomp garchomp = new Garchomp(Natures.Adamant, new int[]{24,12,30,16,23,5}, new int[]{74,190,91,48,84,23});
-            garchomp.Stats.Level = 78;
-            garchomp.Stats.GenerateStats();
-            Console.WriteLine("-----");
+            Trainer trainer = new Trainer(null);
+            trainer.GenerateTrainerId();
+
+            for (int h = 0; h < 100; h++)
+            {
+                for (int i = 0; i < 100_000_000; i++)
+                {
+                    var pokemon = GeneratePokemon.Generate("Charmander", trainer.TrainerId, trainer.SecretId);
+                    if (pokemon.Shiny)
+                    {
+                        Console.WriteLine("Generated shiny after " + i);
+                        foreach (var iv in pokemon.Stats.IVs)
+                        {
+                            Console.Write(iv + " ");
+                        }
+                        Console.WriteLine($"${pokemon.Ability} {pokemon.Gender} \n");
+                        break;
+                    }
+                }
+            }
         }
     }
 }

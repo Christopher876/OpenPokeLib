@@ -2,6 +2,7 @@ namespace OpenPokeLib
 {
     public enum Effects
     {
+        None,
         Paralyzed,
         Poisoned,
         BadlyPoisoned,

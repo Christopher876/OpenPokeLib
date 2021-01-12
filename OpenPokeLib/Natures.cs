@@ -57,5 +57,6 @@ namespace OpenPokeLib
         public static readonly Nature Gentle = new Nature("SpecialDefense", "Defense");
         public static readonly Nature Sassy = new Nature("SpecialDefense", "Speed");
         public static readonly Nature Careful = new Nature("SpecialDefense", "SpecialAttack");
+        public static readonly Nature Quirky = new Nature();
     }
 }
