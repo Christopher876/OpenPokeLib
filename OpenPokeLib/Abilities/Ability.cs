@@ -2,7 +2,7 @@ namespace OpenPokeLib.Abilities
 {
     public abstract class Ability
     {
-        public abstract string Name { get; set; }
+        public string Name { get; set; }
 
         //These are all the different times that an ability can activate and do something
         public virtual object BeforeTurn()

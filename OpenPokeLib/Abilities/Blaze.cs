@@ -2,8 +2,6 @@ namespace OpenPokeLib.Abilities
 {
     public class Blaze : Ability
     {
-        public override string Name { get; set; }
-
         public Blaze()
         {
             Name = "Blaze";
