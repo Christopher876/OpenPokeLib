@@ -1,8 +1,10 @@
 import json
 
 name = input("Name:")
+number = int(input("Number:"))
 
 data = {}
+data['Number'] = number
 data['BaseStats'] = {
     "Hp":int(input("Hp:")),
     "Attack":int(input("Attack:")),

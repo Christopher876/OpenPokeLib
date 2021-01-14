@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -13,13 +14,14 @@ namespace OpenPokeLib.Utils
 {
     public class PokemonInfo
     {
-        private JObject pokemonJson;
+        private readonly JObject _pokemonJson;
+        public Image[] Sprites;
 
         public int[] BaseStats
         {
             get
             {
-                var stats = pokemonJson["BaseStats"];
+                var stats = _pokemonJson["BaseStats"];
                 var baseStats = new int[6];
 
                 int i = 0;
@@ -37,7 +39,7 @@ namespace OpenPokeLib.Utils
             get
             {
                 List<string> t = new List<string>();
-                var types = pokemonJson["Types"];
+                var types = _pokemonJson["Types"];
                 foreach (var ability in types)
                 {
                     t.Add(ability.ToString());
@@ -46,13 +48,13 @@ namespace OpenPokeLib.Utils
             }
         }
 
-        public int GenderThreshold => (int)pokemonJson["GenderThreshold"];
-        public int CatchRate => (int) pokemonJson["CatchRate"];
+        public int GenderThreshold => (int)_pokemonJson["GenderThreshold"];
+        public int CatchRate => (int) _pokemonJson["CatchRate"];
         public List<string> EggGroups
         {
             get
             {
-                var groups = pokemonJson["EggGroups"];
+                var groups = _pokemonJson["EggGroups"];
                 var eggGroups = new List<string>();
                 foreach (var group in groups)
                 {
@@ -67,7 +69,7 @@ namespace OpenPokeLib.Utils
         {
             get
             {
-                var times = pokemonJson["HatchTime"];
+                var times = _pokemonJson["HatchTime"];
                 var hatchTimes = new int[2];
 
                 int i = 0;
@@ -81,14 +83,14 @@ namespace OpenPokeLib.Utils
             }
         }
 
-        public float Height => (float) pokemonJson["Height"];
-        public float Weight => (float) pokemonJson["Weight"];
-        public int BaseExperienceYield => (int) pokemonJson["BaseExperienceYield"];
+        public float Height => (float) _pokemonJson["Height"];
+        public float Weight => (float) _pokemonJson["Weight"];
+        public int BaseExperienceYield => (int) _pokemonJson["BaseExperienceYield"];
         public ILevelExperience LevelingRate
         {
             get
             {
-                var rate = pokemonJson["LevelingRate"];
+                var rate = _pokemonJson["LevelingRate"];
                 var levelingRate =
                     Activator.CreateInstance(Type.GetType("OpenPokeLib.Experience." + rate) ?? typeof(Slow)) as
                         ILevelExperience;
@@ -100,19 +102,19 @@ namespace OpenPokeLib.Utils
         {
             get
             {
-                var yield = pokemonJson["EVYield"].ToArray();
+                var yield = _pokemonJson["EVYield"].ToArray();
                 var evYield = new List<Tuple<string, int>>();
                 return evYield;
             }
             
         }
-        public int BaseFriendship => (int) pokemonJson["BaseFriendship"];
+        public int BaseFriendship => (int) _pokemonJson["BaseFriendship"];
         public List<string> Abilities
         {
             get
             {
                 List<string> ab = new List<string>();
-                var abilities = pokemonJson["Abilities"];
+                var abilities = _pokemonJson["Abilities"];
                 foreach (var ability in abilities)
                 {
                     ab.Add(ability.ToString());
@@ -121,26 +123,50 @@ namespace OpenPokeLib.Utils
             }
         }
 
-        public string Evolution => pokemonJson["Evolution"].ToString();
-        public int EvolutionLevel => (int) pokemonJson["EvolutionLevel"];
-        public string Description => pokemonJson["Description"].ToString();
+        public string Evolution => _pokemonJson["Evolution"].ToString();
+        public int EvolutionLevel => (int) _pokemonJson["EvolutionLevel"];
+        public string Description => _pokemonJson["Description"].ToString();
 
         public PokemonInfo(string name)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            if (assembly is not null)
             {
-                var resourceStream =
-                    assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Pokemon.{name}.json");
-                using StreamReader file = new StreamReader(resourceStream);
-                using JsonTextReader reader = new JsonTextReader(file);
-                pokemonJson = (JObject) JToken.ReadFrom(reader);
+                Sprites = new Image[4];
+                var resourceStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Pokemon.{name}.json");
+
+                //Load up our Pokemon json
+                using (StreamReader file = new StreamReader(resourceStream))
+                {
+                    using (JsonTextReader reader = new JsonTextReader(file))
+                    {
+                        _pokemonJson = (JObject) JToken.ReadFrom(reader);    
+                    }
+                }
+
+                var num = _pokemonJson["Number"]?.ToString().PadLeft(3,'0');
+                
+                //Streams for sprites
+                var spriteFrontStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_4d_{num}.png");
+                var spriteFrontShinyStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_4d_{num}_s.png");
+                var spriteBackStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_b_4d_{num}.png");
+                var spriteBackShinyStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_b_4d_{num}.png");
+                
+                Sprites[0] = Bitmap.FromStream(spriteFrontStream);
+                Sprites[1] = Bitmap.FromStream(spriteBackStream);
+                Sprites[2] = Bitmap.FromStream(spriteFrontShinyStream);
+                Sprites[3] = Bitmap.FromStream(spriteBackShinyStream);
+                
+                resourceStream.Close();
+                spriteFrontStream.Close();
+                spriteBackStream.Close();
+                spriteFrontShinyStream.Close();
+                spriteBackShinyStream.Close();
             }
         }
 
         public Ability GetAbility(int num)
         {
-            var ab = pokemonJson["Abilities"]?[num];
+            var ab = _pokemonJson["Abilities"]?[num];
             var ability = Activator.CreateInstance(Type.GetType("OpenPokeLib.Abilities" + "." + ab.ToString().Replace("_","")) ?? typeof(Blaze)) as Ability;
             return ability;
         }
