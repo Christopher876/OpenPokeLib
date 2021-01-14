@@ -2,8 +2,11 @@ namespace OpenPokeLib.PokemonTypes
 {
     public class Rock : IPokemonType
     {
-        public string Name => "Rock";
-        public Types[] SuperEffective { get; }
-        public Types[] NotEffective { get; }
+        public override Types[] SuperEffective { get; }
+        public override Types[] NotEffective { get; }
+
+        public Rock() : base("Rock")
+        {
+        }
     }
 }

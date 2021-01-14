@@ -1,9 +1,18 @@
 namespace OpenPokeLib.PokemonTypes
 {
-    public interface IPokemonType
+    public abstract class IPokemonType
     {
+        protected IPokemonType(string name)
+        {
+            Name = name;
+        }
+
         public string Name { get; }
-        public Types[] SuperEffective { get; }
-        public Types[] NotEffective { get; }
+        public abstract Types[] SuperEffective { get; }
+        public abstract Types[] NotEffective { get; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

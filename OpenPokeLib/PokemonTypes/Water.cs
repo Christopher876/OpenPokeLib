@@ -2,8 +2,11 @@ namespace OpenPokeLib.PokemonTypes
 {
     public class Water : IPokemonType
     {
-        public string Name => "Water";
-        public Types[] SuperEffective { get; }
-        public Types[] NotEffective { get; }
+        public override Types[] SuperEffective { get; }
+        public override Types[] NotEffective { get; }
+
+        public Water() : base("Water")
+        {
+        }
     }
 }

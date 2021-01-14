@@ -2,9 +2,7 @@ namespace OpenPokeLib.PokemonTypes
 {
     public class Fire : IPokemonType
     {
-        public string Name => "Fire";
-
-        public Types[] SuperEffective
+        public override Types[] SuperEffective
         {
             get
             {
@@ -17,7 +15,7 @@ namespace OpenPokeLib.PokemonTypes
             }
         }
 
-        public Types[] NotEffective
+        public override Types[] NotEffective
         {
             get
             {
@@ -31,6 +29,10 @@ namespace OpenPokeLib.PokemonTypes
                     Types.Fairy
                 };
             }
+        }
+
+        public Fire() : base("Fire")
+        {
         }
     }
 }

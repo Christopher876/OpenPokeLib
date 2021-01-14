@@ -2,9 +2,7 @@ namespace OpenPokeLib.PokemonTypes
 {
     public class Ground : IPokemonType
     {
-        public string Name => "Ground";
-
-        public Types[] SuperEffective
+        public override Types[] SuperEffective
         {
             get
             {
@@ -19,7 +17,7 @@ namespace OpenPokeLib.PokemonTypes
             }
         }
 
-        public Types[] NotEffective
+        public override Types[] NotEffective
         {
             get
             {
@@ -29,6 +27,10 @@ namespace OpenPokeLib.PokemonTypes
                     Types.Rock
                 };
             }
+        }
+
+        public Ground() : base("Ground")
+        {
         }
     }
 }
