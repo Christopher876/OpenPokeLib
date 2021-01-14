@@ -1,0 +1,25 @@
+{
+  "BaseStats": {
+    "Hp": 144,
+    "Attack": 120,
+    "Defense": 60,
+    "SpecialAttack": 40,
+    "SpecialDefense": 60,
+    "Speed": 50
+  },
+  "GenderThreshold": 63,
+  "CatchRate": 200,
+  "EggGroups": ["Human-Like"],
+  "HatchTime": [5140, 5396],
+  "Height": 2.3,
+  "Weight": 559.5,
+  "BaseExperienceYield": 166,
+  "LevelingRate": "Fluctuating",
+  "Types": ["Fighting"],
+  "Abilities": ["Thick_Fat", "Guts"],
+  "EVYield": { "Hp": 2 },
+  "BaseFriendship": 70,
+  "EvolutionLevel": -1,
+  "Evolution": "NA",
+  "Description": "Hariyama is a large, bulky Pok\u00e9mon that is modeled after a sumo wrestler. It has narrow eyes and rounded ears. On its head is a short, triangular crest. Dark blue hair grows across the tops of its eyes, around the head crest, and extends down its back to form a long ponytail. The upper half of its body is cream-colored, while the lower half is dark blue. Yellow extensions encircle its waist, resembling a skirt. There is a small, orange half-circle marking in the center of its torso just above the skirt. Hariyama has large hands with three fingers and small, two-toed feet. Both its hands and feet are orange. "
+}

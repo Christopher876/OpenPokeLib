@@ -21,6 +21,7 @@ namespace OpenPokeLib.Pokemons
         private static Gender GenerateGender(uint pGender, int threshold)
         {
             if (threshold == 0) return Gender.Male;
+            else if (threshold == 255) return Gender.Genderless;
             else if (threshold == 254) return Gender.Female;
             else return (pGender > threshold) ?  Gender.Male: Gender.Female;
         }
@@ -76,7 +77,7 @@ namespace OpenPokeLib.Pokemons
 
             //Gender
             var pGender = p % 256;
-            var gender = GenerateGender(pGender, pokemon.Stats.GenderThreshold);
+            var gender = GenerateGender(pGender, info.GenderThreshold);
             
             //Ability
             var pAbility = (int)Math.Floor((double) (p/65536 % 2));

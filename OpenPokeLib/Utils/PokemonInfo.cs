@@ -141,7 +141,7 @@ namespace OpenPokeLib.Utils
         public Ability GetAbility(int num)
         {
             var ab = pokemonJson["Abilities"]?[num];
-            var ability = Activator.CreateInstance(Type.GetType("OpenPokeLib.Abilities" + "." + ab) ?? typeof(Blaze)) as Ability;
+            var ability = Activator.CreateInstance(Type.GetType("OpenPokeLib.Abilities" + "." + ab.ToString().Replace("_","")) ?? typeof(Blaze)) as Ability;
             return ability;
         }
 

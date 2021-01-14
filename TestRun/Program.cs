@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using OpenPokeLib;
 using OpenPokeLib.Items;
 using OpenPokeLib.Pokemons;
@@ -16,15 +17,23 @@ namespace TestRun
             {
                 for (int i = 0; i < 100_000_000; i++)
                 {
-                    var pokemon = GeneratePokemon.Generate("Charmander", trainer.TrainerId, trainer.SecretId);
+                    Random ranom = new Random();
+                    var options = new []{"Charizard","Groudon","Makuhita","Hariyama","Charmander"};
+                    var pokemon = GeneratePokemon.Generate(options[ranom.Next(0,options.Length)], trainer.TrainerId, trainer.SecretId);
                     if (pokemon.Shiny)
                     {
-                        Console.WriteLine("Generated shiny after " + i);
+                        Console.WriteLine($"Generated shiny {pokemon.Name} after {i} with {pokemon.Ability}");
+                        var types = "";
+                        foreach (var t in pokemon.Types)
+                        {
+                            types += t + " ";
+                        }
                         foreach (var iv in pokemon.Stats.IVs)
                         {
                             Console.Write(iv + " ");
                         }
-                        Console.WriteLine($"${pokemon.Ability} {pokemon.Gender} \n");
+
+                        Console.WriteLine($"{types} {pokemon.Gender} \n");
                         break;
                     }
                 }

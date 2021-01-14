@@ -11,10 +11,17 @@
 
     <ItemGroup>
       <Folder Include="Formulas" />
+      <Folder Include="lib" />
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Include="Resources/Pokemon/*.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Single, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>lib\Single.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

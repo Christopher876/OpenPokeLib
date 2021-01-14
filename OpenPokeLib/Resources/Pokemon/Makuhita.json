@@ -1,2 +1,25 @@
 {
+  "BaseStats": {
+    "Hp": 72,
+    "Attack": 60,
+    "Defense": 30,
+    "SpecialAttack": 20,
+    "SpecialDefense": 30,
+    "Speed": 25
+  },
+  "GenderThreshold": 63,
+  "CatchRate": 180,
+  "EggGroups": ["Human-Like"],
+  "HatchTime": [5140, 5396],
+  "Height": 1.0,
+  "Weight": 190.5,
+  "BaseExperienceYield": 47,
+  "LevelingRate": "Fluctuating",
+  "Types": ["Fighting"],
+  "Abilities": ["Thick_Fat", "Guts"],
+  "EVYield": { "HP": 1 },
+  "BaseFriendship": 70,
+  "EvolutionLevel": 24,
+  "Evolution": "Hariyama",
+  "Description": "Makuhita is a bipedal Pok\u00e9mon with a bulky build. Most of its body is yellow, but it has a black marking on its chest that extends around its neck. Its round hands resemble black boxing gloves, but its feet are yellow with two visible toes. On its cheeks are red, ring-shaped markings, and it has slit-like eyes. On top of its head is a knot, which causes it to resemble a punching bag."
 }
