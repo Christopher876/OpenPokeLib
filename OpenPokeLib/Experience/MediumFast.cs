@@ -4,8 +4,7 @@ namespace OpenPokeLib.Experience
 {
     public class MediumFast : ILevelExperience
     {
-        public int n { get; set; }
-        public int CalculateExperienceRequired()
+        public int CalculateExperienceRequired(int n)
         {
             return (int)Math.Pow(n, 3);
         }
