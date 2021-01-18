@@ -9,7 +9,17 @@ namespace OpenPokeLib
         private string _name;
         public int Level;
         public int CurrentExp; //Current Exp amount since level 1
-        public int NeededExpForNextLevel; //Exp needed to Level up
+
+        public int NeededExpForNextLevel
+        {
+            get
+            {
+                var acquiredForLevel = Experience.CalculateExperienceRequired(Level);
+                var needed = Experience.CalculateExperienceRequired(Level+1);
+                var experienceRequired = needed - acquiredForLevel;
+                return experienceRequired;
+            }
+        }
         public float Weight; //Pounds
 
         public Nature Nature;
