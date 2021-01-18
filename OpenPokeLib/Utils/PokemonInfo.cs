@@ -9,6 +9,7 @@ using OpenPokeLib.Abilities;
 using OpenPokeLib.Experience;
 using OpenPokeLib.PokemonTypes;
 using System.Reflection;
+using OpenPokeLib.Pokemons;
 
 namespace OpenPokeLib.Utils
 {
@@ -125,6 +126,22 @@ namespace OpenPokeLib.Utils
 
         public string Evolution => _pokemonJson["Evolution"].ToString();
         public int EvolutionLevel => (int) _pokemonJson["EvolutionLevel"];
+
+        public IEnumerable<EvolutionTrigger> EvolutionTriggers
+        {
+            get
+            {
+                var triggers = _pokemonJson["Trigger"] as JArray;
+                List<EvolutionTrigger> evolutionTriggers = new List<EvolutionTrigger>();
+                foreach (var trigger in (triggers).Values())
+                {
+                    evolutionTriggers.Add((EvolutionTrigger)Enum.Parse(typeof(EvolutionTrigger), trigger.ToString()));
+                }
+
+                return evolutionTriggers;
+            }
+        }
+
         public string Description => _pokemonJson["Description"].ToString();
 
         public PokemonInfo(string name)
@@ -150,17 +167,30 @@ namespace OpenPokeLib.Utils
                 var spriteFrontShinyStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_4d_{num}_s.png");
                 var spriteBackStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_b_4d_{num}.png");
                 var spriteBackShinyStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Spr_b_4d_{num}.png");
-                
-                Sprites[0] = Bitmap.FromStream(spriteFrontStream);
-                Sprites[1] = Bitmap.FromStream(spriteBackStream);
-                Sprites[2] = Bitmap.FromStream(spriteFrontShinyStream);
-                Sprites[3] = Bitmap.FromStream(spriteBackShinyStream);
+
+                try //Let's try to set all of our sprite images from the streams
+                {
+                    Sprites[0] = Bitmap.FromStream(spriteFrontStream!);
+                    Sprites[1] = Bitmap.FromStream(spriteBackStream!);
+                    Sprites[2] = Bitmap.FromStream(spriteFrontShinyStream!);
+                    Sprites[3] = Bitmap.FromStream(spriteBackShinyStream!);
+                }
+                catch (Exception e) //Handle the Pokemon even if the sprite image is missing
+                {
+                    Console.WriteLine("Missing sprite for " + name);
+                    spriteFrontStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Sprites.Missingno_F.png");
+                    spriteBackStream = assembly.GetManifestResourceStream("OpenPokeLib.Resources.Sprites.Missingno_B.png");
+                    Sprites[0] = Bitmap.FromStream(spriteFrontStream!);
+                    Sprites[1] = Bitmap.FromStream(spriteBackStream!);
+                    Sprites[2] = Bitmap.FromStream(spriteFrontStream!);
+                    Sprites[3] = Bitmap.FromStream(spriteBackStream!);
+                }
                 
                 resourceStream.Close();
                 spriteFrontStream.Close();
                 spriteBackStream.Close();
-                spriteFrontShinyStream.Close();
-                spriteBackShinyStream.Close();
+                if (spriteFrontShinyStream != null) spriteFrontShinyStream.Close();
+                if (spriteBackShinyStream != null) spriteBackShinyStream.Close();
             }
         }
 

@@ -15,8 +15,7 @@ namespace Tests
         [Test]
         public void GetExperienceNeededToLevelUpFast()
         {
-            // var smeargle = new Smeargle(Natures.Adamant, new int[] {0, 0, 0, 0, 0, 0},
-            //     new int[] {0, 0, 0, 0, 0, 0});
+            // var smeargle = new Smeargle();
             // smeargle.Stats.Level = 16;
             //
             // //Get all of the experience gained
@@ -24,7 +23,6 @@ namespace Tests
             // var a = smeargle.Stats.Experience.CalculateExperienceRequired();
             //
             // //Get the next level of experience
-            // smeargle.Stats.Experience.n = 17;
             // var b = smeargle.Stats.Experience.CalculateExperienceRequired();
             //
             // var c = b - a; // Experience needed to get to next level

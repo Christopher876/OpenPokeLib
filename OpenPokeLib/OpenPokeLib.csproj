@@ -19,6 +19,7 @@
 
     <ItemGroup>
         <EmbeddedResource Include="Resources/Pokemon/*.json" />
+        <EmbeddedResource Include="Resources/Items/*.json" />
         <EmbeddedResource Include="Resources/Sprites/*.png" />
     </ItemGroup>
 

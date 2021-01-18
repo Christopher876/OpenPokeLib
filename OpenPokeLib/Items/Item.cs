@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 
 namespace OpenPokeLib.Items
 {
@@ -11,9 +13,17 @@ namespace OpenPokeLib.Items
         public string Description { get; set; }
         public Item(string name)
         {
-            var info = Utils.GetItemInfo.ReadInfo($"Resources/Items/{name}.txt");
-            Name = info.Item1;
-            Description = info.Item2;
+            // var assembly = Assembly.GetExecutingAssembly();
+            // var resourceStream = assembly.GetManifestResourceStream($"OpenPokeLib.Resources.Items.{name}.txt");
+            // Tuple<string, string> item;
+            // using (StreamReader reader = new StreamReader(resourceStream))
+            // {
+            //     var r = reader.ReadToEnd();
+            // }
+            
+            //var info = Utils.GetItemInfo.ReadInfo($"Resources/Items/{name}.txt");
+            // Name = info.Item1;
+            // Description = info.Item2;
         }
 
         public void PokemonEffect()

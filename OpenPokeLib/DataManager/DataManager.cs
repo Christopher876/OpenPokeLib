@@ -76,6 +76,9 @@ namespace OpenPokeLib.DataManager
         
         public static void Save(Trainer trainer, PC pc)
         {
+            //Save Trainer information
+            //_dataJson[""]
+            
             //Save the Pokemon in the Trainer's team
             _dataJson["Party"] = CreatePokemonJson(trainer.Team);
             
