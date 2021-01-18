@@ -1,9 +1,16 @@
-﻿using System;
+﻿/* TODO
+ * REMEMBER TO WRITE ALL FORMAL UNIT TESTS FOR THIS ENTIRE PROJECT.
+ * IT ONLY SERVES TO QUICKLY TEST OUT NEW FUNCTIONALITY THAT GETS ADDED TO THE OPENPOKELIB PROJECT
+ */
+
+using System;
 using System.Drawing;
 using System.Linq;
 using Microsoft.VisualBasic.CompilerServices;
 using OpenPokeLib;
+using OpenPokeLib.Battle;
 using OpenPokeLib.DataManager;
+using OpenPokeLib.Experience;
 using OpenPokeLib.Items;
 using OpenPokeLib.Moves;
 using OpenPokeLib.Pokemons;
@@ -46,8 +53,8 @@ namespace TestRun
                 Console.WriteLine(pokemon);
             }
         }
-        
-        static void Main(string[] args)
+
+        public static void LoadSavePokemon()
         {
             Trainer trainer = new Trainer();
             trainer.GenerateTrainerId();
@@ -72,10 +79,37 @@ namespace TestRun
             }
             
             DataManager.Setup(); //Check if our save file exists and set up the files if it does not
-            DataManager.Load(); //Load up the entire json file into memory
+            DataManager.SaveInitialInfo(trainer);
+            // DataManager.Load(); //Load up the entire json file into memory
             DataManager.Save(trainer,pc); //Save all of the trainer information
             DataManager.Write(); //Write all information to both .json and .bson
             DataManager.Load(); //Load up once again
+        }
+
+        public static void TestLevellingUp()
+        {
+            GlobalObjectManager.instance = new GlobalObjectManager();
+            GlobalObjectManager.instance.Player = new Trainer();
+            GlobalObjectManager.instance.Player.GenerateTrainerId();
+            GlobalObjectManager.instance.Player.Team = new Pokemon[1];
+            GlobalObjectManager.instance.Player.Team[0] = GeneratePokemon.Generate("Garchomp", GlobalObjectManager.instance.Player.TrainerId, GlobalObjectManager.instance.Player.SecretId);
+
+            Pokemon enemy = GeneratePokemon.Generate("Zekrom", GlobalObjectManager.instance.Player.TrainerId,
+                GlobalObjectManager.instance.Player.SecretId);
+            enemy.Stats.Level = 55;
+            GlobalObjectManager.instance.Player.Team[0].Stats.Level = 86;
+            GlobalObjectManager.instance.Player.Team[0].Stats.CurrentExp = GlobalObjectManager.instance.Player.Team[0]
+                .Stats.Experience.CalculateExperienceRequired(14);
+            
+            BattleManager battleManager = new BattleManager(false, enemy);
+            battleManager.SetCurrentActivePlayerPokemon(0);
+            battleManager.DefeatPokemon();
+            var t = GlobalObjectManager.instance.Player.Team[0].Stats.NeededExpForNextLevel;
+        }
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Done");
         }
     }
 }
