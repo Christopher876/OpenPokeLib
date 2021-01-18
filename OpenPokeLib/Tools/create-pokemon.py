@@ -40,6 +40,7 @@ while(i < len(ev_yield)-1):
 
 data['BaseFriendship'] = int(input("Base Friendship:"))
 data['EvolutionLevel'] = int(input("Evolution Level:"))
+data['Trigger'] = input('Evolve Trigger:')
 data['Evolution'] = input('Evolution:')
 data['Description'] = input('Description:')
 
