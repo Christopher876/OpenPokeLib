@@ -63,10 +63,10 @@ namespace OpenPokeLib.Pokemons
             else return null;
         }
         
-        public static Pokemon Generate(string name, int trainerID, int secretID)
+        public static Pokemon Generate(string name, ushort trainerID, ushort secretID)
         {
             Random random = new Random();
-            Pokemon pokemon = Activator.CreateInstance(Type.GetType("OpenPokeLib.Pokemons" + "." + name) ?? typeof(Charmander)) as Pokemon;
+            Pokemon pokemon = new Pokemon(name);
             PokemonInfo info = new PokemonInfo(name);
 
             //Generate Personality Value
@@ -103,7 +103,7 @@ namespace OpenPokeLib.Pokemons
             var type = info.GetTypes();
             
             //Generate Pokemon
-            pokemon?.Generate(shiny,ivs,nature, gender, ability, type);
+            pokemon?.Generate(name,shiny,ivs,nature, gender, ability, type, trainerID);
             pokemon?.Stats.GenerateStats(info);
             return pokemon;
         }
